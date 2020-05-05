@@ -19,12 +19,13 @@
   <div id="container"></div>
   <script>
     var bkimage = "beach"
-    var animals = ["monkey", "lion", "giraffe", "snake"]
+    var animals = ["monkey", "lion", "giraffe", "snake", "circle"]
     var paths = {
       monkey: { sx: 275, sy: 70, ex: 300, ey: 420 },
       lion: { sx: 400, sy: 70, ex: 100, ey: 390 },
       giraffe: { sx: 90, sy: 70, ex: 390, ey: 250 },
       snake: { sx: 10, sy: 70, ex: 275, ey: 350 },
+      circle: { sx: 50, sy: 70, ex: 280, ey: 370 },
     }
     var loadedImages = 0;
 
@@ -126,7 +127,7 @@
               animalLayer.draw();
               animal.inRightPlace = true;
 
-              if (++score >= 4) {
+              if (++score >= 5) {
                 var text = 'You win! Enjoy your booty!';
                 drawBackground(background, images.beach, text);
               }
