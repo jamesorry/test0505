@@ -25,6 +25,10 @@
         stage.add(background);
 
         var bkimage = new Image();
-        bkimage.src = 'ass'
+        bkimage.src = 'assets/'
+        bkimage.onload = function(){
+            var context = background.getContext()
+            context.drawImage(bkimage, 0, 0);
+        };
       </script>
   </body>
