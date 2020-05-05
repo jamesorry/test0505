@@ -16,6 +16,43 @@
     <body>
         <div id="container"></div>
         <script>
+            var bkimage = "beach"
+            var animals = [ "monkey", "lion", "giraffe", "snake"]
+            var paths = {
+                monkey: { sx:275 , sy:70 , ex:300 , ey:420 },
+                lion::{ sx:400, sy:70, ex:100, ey:390 },
+                giraffe: { sx:90 , sy:70 , ex:390 , ey:250 },
+                snake: { sx:10 , sy:70 , ex:275 , ey:350 },
+            }
+            var loadedImages = 0;
+
+            loadedImages(bkimage, animals, initStage)
+
+            function loadedImages(bgimg, fgimgs, callback){
+                var assetDir = 'asset/';
+                var variants = ["", "_black", "_glow"];
+                var images = {};
+                var sources = [bgimg]
+                for( var i = 0; i< fgimgs.length; i++){
+                    for(var j = 0; j < variants.length; j++){
+                        sources.push(fgimgs[i] + variants[j])
+                    }
+                }
+                var numImages = sources.length;
+                //console.log("numImages",numImages); 在網頁上F12能看結果
+                for (var i = 0; i< sources.length; i++){
+                    var src = sources[i];
+                    images[src] = new Image();
+                    images[src].src = assetDir + src + ".png";
+                    images[src].onload = function(){
+                        if(++loadedImages >= numImages){
+                            callback(images);
+                        }
+                    };
+                };
+                //console.log("images",images)
+            }
+
             var stage = new Konva.Stage({
                 container: 'container',
                 width: 578,
@@ -44,32 +81,7 @@
                 animalLayer.add(monkeyImg)
                 stage.add(animalLayer)
             };
-            // var animalLayer = new Konva.Layer();
-            // var monkey2Pos = { x: 50, y: 100 }
-            // var monkey2 = new Image()
-            // monkey2.src = 'assets/monkey.png';
-            // monkey2.onload = function(){
-            //     var monkey2Img = new Konva.Image({
-            //         image: monkey2 ,
-            //         x: monkey2Pos.x ,
-            //         y: monkey2Pos.y ,
-            //     });
-            //     animalLayer.add(monkey2Img)
-            //     stage.add(animalLayer)
-            // };
-            // var animalLayer = new Konva.Layer();
-            // var monkey3Pos = { x: 50, y: 200 }
-            // var monkey3 = new Image()
-            // monkey3.src = 'assets/monkey.png';
-            // monkey3.onload = function(){
-            //     var monkey3Img = new Konva.Image({
-            //         image: monkey3 ,
-            //         x: monkey3Pos.x ,
-            //         y: monkey3Pos.y ,
-            //     });
-            //     animalLayer.add(monkey3Img)
-            //     stage.add(animalLayer)
-            // };
+            
         </script>
     </body>
 </html>
